@@ -1,0 +1,65 @@
+﻿@page
+@model Homeworl2.Pages.StudentModel
+@{
+    List<Homeworl2.Pages.student> students = Model.list_student;
+}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+    <div class="container">
+        <table class="table table-success table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Grade</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var student in students)
+                {
+                    <tr>
+                        <td>@student.Id</td>
+                        <td>@student.Name</td>
+                        <td>@student.Gender</td>
+                        <td>@student.Grade</td>
+                        <td>@student.Address</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            @{
+                int numStudent = 0;
+                double totalGrade = 0.0;
+                int numFemale = 0;
+                int numMale = 0;
+                foreach (var st in students)
+                {
+                    numStudent = numStudent + 1;
+                    totalGrade = totalGrade + st.Grade;
+                    if (st.Gender.ToString().Trim().Equals("Male"))
+                    {
+                        numMale = numMale + 1;
+                    }
+                    else
+                    {
+                        numFemale = numFemale + 1;
+                    }
+                }
+
+                <div class="d-inline-flex p-2">
+                    <p class="btn btn-outline-primary" >Number Student : @numStudent</p>
+                    <p class="btn btn-outline-success">Number Female : @numStudent</p>
+                    <p class="btn btn-outline-warning">Number Male : @numStudent</p>
+                    <p class="btn btn-outline-info">Number Totale Grade: @numStudent</p>
+                </div>
+            }
+        </div>
+    </body>
+</html>
+
+
